@@ -26,3 +26,20 @@
 - add multi-language support
 
 - add ui to manager user accounts
+
+
+
+
+THERE IS A BUG:
+
+when you change the path to the file in an alias, the cookie gets not updated, and you still point to the
+old database file!!!
+Changing to another alias and coming back helps.
+
+
+Notes about Steves branch:
+------------------------------------------------------------------------------------------------
+
+dbaction.php: this should go away:
+$object = $_GET['object'];
+$action = $_GET['action'];

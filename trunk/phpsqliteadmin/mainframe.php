@@ -109,7 +109,7 @@ echo<<<EOT
 <li><a href="dbaction.php?action=vacuum" target="_top" onclick="return confirm_vacuum_db();">Vacuum Database</a></li>
 EOT;
 
-if ($current_db != 'phpsla.sqlite') print "<li><a href=\"dbaction.php?action=drop\" target=\"_top\" onclick=\"return confirm_drop_db();\">Drop Database</a></li>\n";
+if ($current_db != 'db/phpsla.sqlite') print "<li><a href=\"dbaction.php?action=drop\" target=\"_top\" onclick=\"return confirm_drop_db();\">Drop Database</a></li>\n";
 
 print "</ul>\n";
 

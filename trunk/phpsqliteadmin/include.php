@@ -7,7 +7,7 @@ require_once('SPSQLite.class.php');
 
 
 if($_SESSION['phpSQLiteAdmin_currentdb'] == '') {
-	$_SESSION['phpSQLiteAdmin_currentdb'] = 'phpsla.sqlite';
+	$_SESSION['phpSQLiteAdmin_currentdb'] = 'db/phpsla.sqlite';
 } elseif(isset($_POST['sessionname'])) {
 	$_SESSION['phpSQLiteAdmin_currentdb'] = $_POST['sessionvalue'];
 }
@@ -26,8 +26,8 @@ function check_db() {
 
 
 // connect to the system database
-if (!is_writable('phpsla.sqlite')) die("<br />System database 'phpsla.sqlite' is not writeable by webserver account.");
-$sysdbh =& new SPSQLite('phpsla.sqlite');
+if (!is_writable('db/phpsla.sqlite')) die("<br />System database 'phpsla.sqlite' is not writeable by webserver account.");
+$sysdbh =& new SPSQLite('db/phpsla.sqlite');
 $current_db = $_SESSION['phpSQLiteAdmin_currentdb'];
 $current_user = 1;
 

@@ -3,7 +3,7 @@
 include_once("login.class.php");
 
 $obj =& new login($_POST['user'], $_POST['pass']);
-$obj->SPSQLite("phpsla.sqlite");
+$obj->SPSQLite("db/phpsla.sqlite");
 
 if ((isset($_GET['logoff'])) && ($_GET['logoff'] == '1')) {
 	$obj->logOff();
@@ -45,8 +45,9 @@ if (isset($_POST['empty'])) {
 
 if ($obj->isEmpty()) {
 	echo "</td></tr>";
-	echo "<tr><td>Realname:</td><td><input type=\"text\" name=\"realname\"></td></tr>\n";
-	echo "<tr><td>Email:</td><td><input type=\"text\" name=\"email\">\n";
+//	echo "<tr><th>Password (confirm):</td><td><input type=\"password\" name=\"realname\" size=\"24\" maxlength=\"24\"></td></tr>\n";
+	echo "<tr><th>Realname:</td><td><input type=\"text\" name=\"realname\" size=\"24\" maxlength=\"24\"></td></tr>\n";
+	echo "<tr><th>Email:</td><td><input type=\"text\" name=\"email\" size=\"24\" maxlength=\"24\">\n";
 	echo "<input type=\"hidden\" name=\"empty\">\n";
 } else {
 	echo "<input type=\"hidden\" name=\"notempty\">\n";

@@ -1,5 +1,10 @@
 phpSQLiteAdmin changelog
 
+(21.05.2004)
+
+- added login
+- fixed session problem concerning database names
+
 0.2 (05.03.2004)
 
 - Implemented an alias-system which allows you to add the databases you want to administer via phpSQLiteAdmin. No need to edit config.php anymore

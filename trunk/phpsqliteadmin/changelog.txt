@@ -1,10 +1,12 @@
-phpSQLiteAdmin changelog
+phpSQLiteAdmin changelog ( see http://phpsqliteadmin.sourceforge.net/ for more details)
 
-(21.05.2004)
+0.3 (xx.xx.2004)
 
 - added login
 - fixed session problem concerning database names
 - added field names on browse
+- converted from html 4.01 to xhtml 1.0 transitional
+- fixed the alias configurator to return always to the mainframe window and not the "_top" window
 
 0.2 (05.03.2004)
 

@@ -6,9 +6,9 @@ class login extends SPSQLite
 {
     var $_user;
     var $_pass;
-    
+
     // {{{ function login()
-    
+
     function login($user, $pass)
     {
         $this->_user = $user;
@@ -20,7 +20,7 @@ class login extends SPSQLite
     // {{{ function checkLogin()
 
     function checkLogin()
-    {        
+    {
         $query = "SELECT * FROM users WHERE login = '$this->_user'";
         $this->query($query);
 
@@ -56,7 +56,7 @@ class login extends SPSQLite
     function updateLogin($pass)
     {
         $this->_pass = md5($pass);
-        
+
         $query = "UPDATE users SET password = '$this->pass' WHERE login = '$this->user'";
         $this->query($query);
     }
@@ -69,7 +69,7 @@ class login extends SPSQLite
     {
         $query = "SELECT * FROM users";
         $this->query($query);
-        
+
         if ($this->numRows() == 0) {
             return true;
         } else {

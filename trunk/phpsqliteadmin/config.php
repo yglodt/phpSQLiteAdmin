@@ -6,9 +6,10 @@ $config['root_path'] = "C:/Arquivos de programas/Apache Group/Apache2/htdocs/hp/
 
 $datetime_format = 'd.m.Y - H:i:s';
 
+// encoding for the php function "htmlentities", see http://www.php.net/htmlentities
+$encoding = 'ISO-8859-15';
 
-// hoster mode stuff
-
+// hoster-mode stuff
 // in your directory structure, at which depth is the users directory
 // e.g. for /home/USER/public_html it would be 2
 // e.g. for /home/webroot/users/USER/public_html it would be 4

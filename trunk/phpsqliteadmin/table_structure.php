@@ -3,23 +3,25 @@
 require_once('include.php');
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+	<link href="phpsla.css" rel="stylesheet" type="text/css" />
 	<title>phpSQLiteAdmin</title>
-	<meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
 	<script language="Javascript" src="javascript.txt" type="text/javascript"></script>
-	<link href="phpsla.css" rel="stylesheet" type="text/css">
 </head>
-<body class=right>
+<body class="right">
 <?php
 
 print_top_links($_GET['object']);
 
 print "<h3>Table '{$_GET['object']}'</h3>\n";
 
-print "<table border=1>\n";
+print "<table border=\"1\">\n";
 print "<tr><th>Column</th><th>Type</th></tr>\n";
 $userdbh->_setTableInfo($_GET['object']);
 $cols = $userdbh->getColsType();
@@ -46,7 +48,7 @@ exit;
 */
 
 if($nr_indexes > 0) {
-	print "<table border=1>\n";
+	print "<table border=\"1\">\n";
 	print "<tr><th>Index name</th><th>On field(s)</th></tr>\n";
 	foreach($indexes as $row) {
 		if(eregi("\((.*)\)", $row['sql'], $fields)) {
@@ -58,7 +60,7 @@ if($nr_indexes > 0) {
 		}
 	}
 	print "</table>\n";
-	
+
 } else {
 
 	print "<em>no indexes</em>\n";

@@ -24,6 +24,15 @@ print "<h3>Table '".$_GET['object']."'</h3>\n";
 print "<table>\n";
 
 $userdbh->query('select * from '.$_GET['object']);
+
+print "<tr>\n";
+
+for ($i=0; $i<$userdbh->numFields(); $i++) {
+    print "<th>" . $userdbh->fieldName($i)  . "</th>\n";
+}
+
+print "</tr>\n";
+
 while($row = $userdbh->fetchArray()) {
 	$nr_fields = count($row);
 	//$rows = $userdbh->returnRows('num');

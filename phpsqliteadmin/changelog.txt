@@ -4,6 +4,7 @@ phpSQLiteAdmin changelog
 
 - added login
 - fixed session problem concerning database names
+- added field names on browse
 
 0.2 (05.03.2004)
 

@@ -1,6 +1,6 @@
 phpSQLiteAdmin changelog ( see http://phpsqliteadmin.sourceforge.net/ for more details)
 
-0.3 (xx.xx.2004)
+0.3 (xx.xx.2005)
 
 - added login
 - fixed session problem concerning database names

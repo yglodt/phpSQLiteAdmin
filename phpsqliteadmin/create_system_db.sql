@@ -50,5 +50,4 @@ insert into users values ('2','me','some md5 hash','name 2','bla2@nil.com',NULL,
 insert into databases values (1,'i-man-0.8_Lin','/home/yves/projects/php/i-man-0.8/exampledb/i-man.sqlite','');
 insert into databases values (1,'i-man-0.9_Lin','/home/yves/projects/php/i-man-0.9/exampledb/i-man.sqlite','');
 insert into databases values (1,'i-man-0.8_Win','c:\htdocs\i-man-0.8\exampledb\i-man.sqlite','');
-insert into databases values (1,'phpsla.sqlite','phpsla.sqlite','phpsla system database');
-
+insert into databases values (1,'phpsla.sqlite','db/phpsla.sqlite','phpsla system database');

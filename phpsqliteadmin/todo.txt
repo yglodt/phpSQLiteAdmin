@@ -1,0 +1,24 @@
+- you can add an alias database w/out the alias filled, which is bad...
+
+- you can remove phpsla.sqlite alias, which is bad as well
+
+- "browse" should show the column names -> sqlite_field_name
+
+- "browse" should have navigation buttons
+
+- display of indexes fails sometimes
+
+- display of table structure fails when columns are typeless (problem in the class)
+
+- ui to create triggers
+
+- ui to create views
+
+- create a way to alter tables
+
+- you name it! still many many stuff to do...
+
+- add a warning if magic_quotes_gpc is ON
+
+- some kind of login, to prevent acces to everybody. Make it play nicely with hm.
+  Maybe this needs a user table. well I guess it needs one.

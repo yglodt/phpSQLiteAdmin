@@ -1,5 +1,6 @@
 <?php
 
+include_once("check_login.php");
 require_once('include.php');
 
 ?>

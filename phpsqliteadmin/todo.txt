@@ -2,8 +2,6 @@
 
 - you can remove phpsla.sqlite alias, which is bad as well
 
-- "browse" should show the column names -> sqlite_field_name
-
 - "browse" should have navigation buttons
 
 - display of indexes fails sometimes
@@ -20,8 +18,9 @@
 
 - add a warning if magic_quotes_gpc is ON
 
-- add some kind of login, to prevent acces to everybody. Make it play nicely with hm.
-  Maybe this needs a user table. well I guess it needs one. Felipe works in it.
-
 - finish "hoster-mode", which must play nicely with login
 
+- make it xhtml 1.0 Transitional:
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+- add multi-language support

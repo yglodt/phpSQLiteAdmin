@@ -16,7 +16,7 @@
 // | Author: Alan D'Angelo <alan_dangelo@php.net>                           |
 // +------------------------------------------------------------------------+
 //
-// $Id: SPSQLite.class.php,v 1.2 2004-05-21 19:17:52 felipe_lopes Exp $
+// $Id: SPSQLite.class.php,v 1.3 2004-05-21 19:49:30 felipe_lopes Exp $
 //
 /* ADD-ON:
 // +------------------------------------------------------------------------+
@@ -1056,7 +1056,7 @@ class SPSQLite
 
     function fieldName($i)
     {
-    return sqlite_field_name($this->_result, $i);
+        return sqlite_field_name($this->_result, $i);
     }
 
     // }}}

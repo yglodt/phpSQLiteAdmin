@@ -19,28 +19,28 @@ if (isset($_POST['empty'])) {
 }
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<title>phpSQLiteAdmin - Login</title>
+	<title>phpSQLiteAdmin - Login (<?=$_SERVER['HTTP_HOST']?>)</title>
 	<meta http-equiv="expires" content="0">
 	<link href="phpsla.css" rel="stylesheet" type="text/css">
 </head>
 <body class="right" onload="document.login.user.focus();">
 
-<h1>phpSQLiteAdmin 0.3</h1>
-<p>Running on <em><?=$_SERVER['HTTP_HOST']?></em></p>
+<h1>Welcome to phpSQLiteAdmin</h1>
+<p>Version 0.3 running on <em><?=$_SERVER['HTTP_HOST']?></em></p>
 
 <form name="login" method="post" action="<?=$_SERVER['PHP_SELF']?>">
 <table>
 <tr>
-<td>Username:</td>
-<td><input type="text" name="user"></td>
+<th>Username:</th>
+<td><input type="text" name="user" size="24" maxlength="24"></td>
 </tr>
 <tr>
-<td>Password:</td>
-<td><input type="password" name="pass">
+<th>Password:</th>
+<td><input type="password" name="pass" size="24" maxlength="24">
 <?php
 
 if ($obj->isEmpty()) {

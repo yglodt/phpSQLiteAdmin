@@ -26,7 +26,7 @@ function check_db() {
 
 
 // connect to the system database
-if (!is_writable('phpsla.sqlite')) die("<br>System database 'phpsla.sqlite' is not writeable by webserver account.");
+if (!is_writable('phpsla.sqlite')) die("<br />System database 'phpsla.sqlite' is not writeable by webserver account.");
 $sysdbh =& new SPSQLite('phpsla.sqlite');
 $current_db = $_SESSION['phpSQLiteAdmin_currentdb'];
 $current_user = 1;
@@ -58,14 +58,14 @@ global $sqliteversion;
 echo<<<EOT
 <div id="currentdb">Database: {$_SESSION['phpSQLiteAdmin_currentdb']}</div>
 <p class="sqliteversion">SQLite version: $sqliteversion</p>
-<br>
+<br />
 <a href="mainframe.php" target="mainframe">Back</a> |
 <a href="table_structure.php?object=$current_table" target="mainframe">Structure</a> |
 <a href="table_browse.php?object=$current_table" target="mainframe">Browse</a> |
 <a href="query.php?object=$current_table" target="mainframe">Query</a> |
 <!--<a href="export.php?object=$current_table" target="mainframe">Export</a> |-->
-<a href="dbaction.php?action=empty_table&object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
-<a href="dbaction.php?action=drop_table&object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
+<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
+<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
 EOT;
 }
 
@@ -75,8 +75,8 @@ echo<<<EOT
 <a href="table_structure.php?object=$current_table" target="mainframe">Structure</a> |
 <a href="table_browse.php?object=$current_table" target="mainframe">Browse</a> |
 <a href="query.php?object=$current_table" target="mainframe">Query</a> |
-<a href="dbaction.php?action=empty_table&object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
-<a href="dbaction.php?action=drop_table&object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
+<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
+<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
 
 EOT;
 }
@@ -84,24 +84,24 @@ EOT;
 
 function print_index_action_links($current_index) {
 echo<<<EOT
-<a href="dbaction.php?action=drop_index&object=$current_index" target="_top" onclick="return confirm_drop_index();">Drop</a>
+<a href="dbaction.php?action=drop_index&amp;object=$current_index" target="_top" onclick="return confirm_drop_index();">Drop</a>
 EOT;
 }
 
 
 function print_db_selector($current_db) {
 	global $db_dir,$database,$sysdbh;
-	print "<form name=choosedb action=\"set_session.php\" method=post target=\"_top\">\n";
-	print "<input type=hidden name=sessionname value=phpSQLiteAdmin_currentdb>\n";
-	print "<select name=sessionvalue onchange=\"this.form.submit();\">\n";
+	print "<form name=\"choosedb\" action=\"set_session.php\" method=\"post\" target=\"_top\">\n";
+	print "<input type=\"hidden\" name=\"sessionname\" value=\"phpSQLiteAdmin_currentdb\" />\n";
+	print "<select name=\"sessionvalue\" onchange=\"this.form.submit();\">\n";
 
 	$sysdbh->query("select alias,path from databases order by alias");
 	while($row = $sysdbh->fetchArray()) {
-		//print $row[0].'-'.$current_db."<br>\n";
+		//print $row[0].'-'.$current_db."<br />\n";
 		if ($row[1] != $current_db) {
 			print '<option value="'.$row[1].'">'.$row[0]."</option>\n";
 		} else {
-			print '<option value="'.$row[1].'" selected>'.$row[0]."</option>\n";
+			print '<option value="'.$row[1].'" selected="selected">'.$row[0]."</option>\n";
 		}
 		// dunno what this is for... remove it later
 		$available_dbs[] = $row[0];
@@ -180,7 +180,7 @@ class dbalias {
 	var $alias;
 	var $path;
 	var $description;
-	
+
 	function get($user,$alias) {
 		// select here and return object
 		return 0;

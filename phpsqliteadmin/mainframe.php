@@ -3,17 +3,18 @@
 require_once('include.php');
 
 echo<<<EOT
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+	<link href="phpsla.css" rel="stylesheet" type="text/css" />
 	<title>phpSQLiteAdmin</title>
-	<meta http-equiv="expires" content="0">
-	<script language="javascript" src="javascript.txt" type="text/javascript"></script>
-	<link href="phpsla.css" rel="stylesheet" type="text/css">
-	<base target="mainframe">
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<script language="Javascript" src="javascript.txt" type="text/javascript"></script>
 </head>
-<body class=right>
+<body class="right">
 <div id="currentdb">Database: {$_SESSION['phpSQLiteAdmin_currentdb']}</div>
 EOT;
 
@@ -28,7 +29,7 @@ if (!check_db()) {
 $dbinfo = $userdbh->dbInfo();
 
 print "<table id=\"dbinfotable\">\n";
-print "<tr><th colspan=2>Database file information</th></tr>\n";
+print "<tr><th colspan=\"2\">Database file information</th></tr>\n";
 print "<tr><td>Size:</td><td>".($dbinfo['size']/1024)."KB</td></tr>\n";
 print "<tr><td>Last modification:</td><td>".$dbinfo['last_mod']."</td></tr>\n";
 
@@ -39,7 +40,7 @@ if(function_exists("posix_getpwuid")) {
 	print "<tr><td>Group:</td><td>".$group['name']."</td></tr>\n";
 }
 
-print "</table><br>\n";
+print "</table><br />\n";
 
 
 print "<h3>Tables:</h3>\n";
@@ -56,12 +57,12 @@ if (count($rows) > 0) {
 		print "</td></tr>\n";
 	}
 }
-print "</table><br>\n";
+print "</table><br />\n";
 */
 
+$userdbh->query("select name,upper(name) from SQLITE_MASTER where type = 'table' order by 2");
 print "<table id=\"tabletable\">\n";
 print "<tr><th>Name</th><th>Rows</th><th>Action</th></tr>\n";
-$userdbh->query("select name,upper(name) from SQLITE_MASTER where type = 'table' order by 2");
 while($row = $userdbh->fetchArray()) {
 	print "<tr><td>".$row[0]."</td>\n";
 	$userdbh2->query("select count(*) from $row[0]");
@@ -72,29 +73,26 @@ while($row = $userdbh->fetchArray()) {
 	print_table_action_links($row[0]);
 	print "</td></tr>\n";
 }
-print "</table><br>\n";
+print "</table><br />\n";
 
 
 
 echo<<<EOT
 <h3>Database operations:</h3>
-
-<table class="blind">
-<form action="table_create.php" method=post onsubmit="">
-<tr>
-<td>Create a new table named</td>
-<td><input type=text name=tablename value="" size=20><td>with</td>
-<td><input type=text name=columns value="" size=3> colums</td>
-<td><input type=submit name=submit value="Go"></td>
-</tr>
+<ul>
+<li>
+<form action="table_create.php" method="post" onsubmit="">Create a new table named
+<input type="text" name="tablename" value="" size="20" /> with
+<input type="text" name="columns" value="" size="3" /> colums
+<input type="submit" name="submit" value="Go" />
 </form>
-
+</li>
 
 <!--
+<li>
 <form action="index_create.php" method=post onsubmit="">
-<tr>
-<td>Create an index on table</td>
-<td><select name=create_index>\n
+Create an index on table
+<select name="create_index">\n
 EOT;
 
 foreach($rows as $row) {
@@ -102,20 +100,18 @@ foreach($rows as $row) {
 }
 
 echo<<<EOT
-</select></td>
-<td colspan=3 align=right><input type=submit name=submit value="Go"></td>
-</tr>
-</form>
+</select>
+<input type="submit" name="submit" value="Go" />
+</li>
 -->
 
-<tr><td colspan=5><a href="dbaction.php?action=schema" target="mainframe">Show Database schema</a></td></tr>
-<tr><td colspan=5><a href="dbaction.php?action=vacuum" target="_top" onclick="return confirm_vacuum_db();">Vacuum Database</a></td></tr>
+<li><a href="dbaction.php?action=schema" target="mainframe">Show Database schema</a></li>
+<li><a href="dbaction.php?action=vacuum" target="_top" onclick="return confirm_vacuum_db();">Vacuum Database</a></li>
 EOT;
 
-if ($current_db != 'phpsla.sqlite') print "<tr><td colspan=5><a href=\"dbaction.php?action=drop\" target=\"_top\" onclick=\"return confirm_drop_db();\">Drop Database</a></td></tr>\n";
+if ($current_db != 'phpsla.sqlite') print "<li><a href=\"dbaction.php?action=drop\" target=\"_top\" onclick=\"return confirm_drop_db();\">Drop Database</a></li>\n";
 
-print "</table>\n";
-
+print "</ul>\n";
 
 print "</body>\n";
 print "</html>\n";

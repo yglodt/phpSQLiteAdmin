@@ -68,7 +68,7 @@ EOT;
 
 if ($action == 'drop') {
 	// system db may not be dropped
-	if ($current_db == 'phpsla.sqlite') {
+	if ($current_db == 'db/phpsla.sqlite') {
         header("Location: index.php");
 		exit;
 	}
@@ -84,7 +84,7 @@ if ($action == 'drop') {
 	$sysdbh->query("delete from databases where user = {$alias->user} and alias = '{$alias->alias}'");
 	unset($userdbh);
 	unlink($current_db);
-	$_SESSION['phpSQLiteAdmin_currentdb'] = "phpsla.sqlite";
+	$_SESSION['phpSQLiteAdmin_currentdb'] = 'db/phpsla.sqlite';
 	header("Location: index.php");
 	exit;
 }

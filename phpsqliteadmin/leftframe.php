@@ -17,7 +17,10 @@ echo<<<EOT
 <a href="index.php" target="_top">Main</a>
 <br>
 <a href="dbconfig.php">Alias configuration</a>
-<br><br>
+<br>
+<a href="login.php?logoff=1" target="_top">Logoff</a>
+<br>
+<br>
 EOT;
 
 print "<div class=\"list\">\n";

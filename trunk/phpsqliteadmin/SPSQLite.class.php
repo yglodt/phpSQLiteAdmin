@@ -16,7 +16,7 @@
 // | Author: Alan D'Angelo <alan_dangelo@php.net>                           |
 // +------------------------------------------------------------------------+
 //
-// $Id: SPSQLite.class.php,v 1.1.1.1 2004-05-11 18:23:28 yglodt Exp $
+// $Id: SPSQLite.class.php,v 1.2 2004-05-21 19:17:52 felipe_lopes Exp $
 //
 /* ADD-ON:
 // +------------------------------------------------------------------------+
@@ -643,6 +643,8 @@ class SPSQLite
 		}
     }
 
+    // }}}
+
     // {{{ lastInsertId()
     
     /**
@@ -965,9 +967,13 @@ class SPSQLite
 		return $cols;
 	}
 
+    // }}}
+
 	/*
 	HERE STARTS ADD-ON TO SPSQLITE CLASS TO FIT PHPSLA NEEDS
 	*/
+
+    // {{{ function listTables()
 
 	function listTables() {
 
@@ -992,6 +998,10 @@ class SPSQLite
 
 	}
 
+    // }}}
+
+    // {{{ function dbInfo()
+
 	function dbInfo() {
 
 		$dbInfo['size'] = filesize($this->_file);
@@ -1005,6 +1015,10 @@ class SPSQLite
 
 	}
 
+    // }}}
+
+    // {{{ function fetchArray()
+
 	function fetchArray($type = 'num') {
 
 		if (isset($type)) {
@@ -1017,15 +1031,37 @@ class SPSQLite
 
 	}
 
+    // }}}
+
+    // {{{ function vaccum()
+
 	function vacuum() {
 
 		$this->query("VACUUM");
 
 	}
 
-}
+    // }}}
+
+    // {{{ numFields()
+
+    function numFields()
+    {
+        return sqlite_num_fields($this->_result);
+    }
 
     // }}}
+    
+    // {{{ function fieldName()
+
+    function fieldName($i)
+    {
+    return sqlite_field_name($this->_result, $i);
+    }
+
+    // }}}
+
+}
 
 /*
 	This product includes PHP, freely available from

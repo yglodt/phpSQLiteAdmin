@@ -21,4 +21,4 @@
 - add a warning if magic_quotes_gpc is ON
 
 - some kind of login, to prevent acces to everybody. Make it play nicely with hm.
-  Maybe this needs a user table. well I guess it needs one.
+  Maybe this needs a user table. well I guess it needs one. Felipe works in it.

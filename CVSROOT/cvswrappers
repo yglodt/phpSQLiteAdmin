@@ -17,3 +17,6 @@
 #  and value is a single-quote delimited value.
 # For example:
 #*.gif -k 'b'
+
+*.sqlite -k 'b'
+

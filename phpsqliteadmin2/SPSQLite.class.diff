@@ -1,0 +1,136 @@
+--- SPSQLite.class-0.6.php	2004-02-23 11:45:20.000000000 +0100
++++ SPSQLite.class.php	2004-02-23 11:39:57.000000000 +0100
+@@ -18,7 +18,13 @@
+ //
+ // $Id: SPSQLite.class.diff,v 1.1.1.1 2005-07-24 12:59:38 yglodt Exp $
+ //
+-
++/* ADD-ON:
++// +------------------------------------------------------------------------+
++// | Copyright (c) 2004 Felipe Lopes                                        |
++// | Email         php4@ibest.com.br                                        |
++// +------------------------------------------------------------------------+
++// | ADD-ON Author: Felipe Lopes  <php4@ibest.com.br>                       |
++// +------------------------------------------------------------------------+
+ /**
+  * Simple Power SQLite class: Class in PHP for easy SQLite operation.
+  * Tested on PHP 4.3.3 (Win XP) - PHP5.0.0b2dev (Win XP).
+@@ -549,7 +555,7 @@
+     * @return	mixed
+     */
+ 	
+-	function returnRows($type = null)
++	function returnRows($type = null, $return_one_row = false)
+ 	{
+ 		if (isset($type)) {
+ 			$this->_setType($type);
+@@ -559,10 +565,16 @@
+ 			$rows[] = $row;
+ 		}
+ 
+-		if (count($rows) == 1) {
+-			return $rows[0];
+-		} else {
++		if($return_one_row == true) {
++			
+ 			return $rows;
++
++		} else {
++			if (count($rows) == 1) {
++				return $rows[0];
++			} else {
++				return $rows;
++			}
+ 		}
+ 	}
+ 	
+@@ -672,9 +684,12 @@
+     * @return int
+     */
+ 	
+-	function numRows()
++	function numRows($table = "")
+ 	{
+-		if ($this->_buffer) {
++		if (($this->_buffer) && (empty($table))) {
++			return sqlite_num_rows($this->_result);
++		} elseif (($this->_buffer) && (!empty($table))) {
++			$this->query("SELECT * FROM " . $table);
+ 			return sqlite_num_rows($this->_result);
+ 		} else {
+ 			$this->_showError('Query unbuffered: numRows() is unavailable');
+@@ -851,7 +866,7 @@
+ 			$istruzione = $this->_command;
+ 		}
+ 		if ($this->_showError) {
+-			$msg_errore = "<p>ERROR: <ul><li>Error nœ: " . sqlite_last_error($this->_conn) . 
++			$msg_errore = "<p>ERROR: <ul><li>Error n°: " . sqlite_last_error($this->_conn) . 
+ 							"</li><li>Description: " . sqlite_error_string(sqlite_last_error($this->_conn)) . 
+ 							"</li><li>Possibile cause: " . htmlentities($istruzione) . "</li></ul></p>";
+ 		}
+@@ -949,6 +964,65 @@
+ 		}
+ 		return $cols;
+ 	}
++
++	/*
++	HERE STARTS ADD-ON TO SPSQLITE CLASS TO FIT PHPSLA NEEDS
++	*/
++
++	function listTables() {
++
++		$query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name";
++		$this->query($query);
++
++	}
++
++	function getIndexesInfo($tbl_name = "") {
++
++		if (empty($tbl_name)) {
++			
++			$query = "SELECT * FROM sqlite_master WHERE type='index' ORDER BY name";
++			$this->query($query);
++
++		} else {
++
++			$query = "SELECT * FROM sqlite_master WHERE type='index' AND tbl_name='$tbl_name' ORDER BY name";
++			$this->query($query);
++
++		}
++
++	}
++
++	function dbInfo() {
++
++		$dbInfo['size'] = filesize($this->_file);
++		$dbInfo['last_mod'] = date("Y-m-d H:i", filemtime($this->_file));
++		$dbInfo['last_acc'] = date("Y-m-d H:i", fileatime($this->_file));
++		$dbInfo['owner'] = fileowner($this->_file);
++
++		clearstatcache();
++
++		return $dbInfo;
++
++	}
++
++	function fetchArray($type = 'num') {
++
++		if (isset($type)) {
++
++			$this->_setType($type);
++
++		}
++
++		return @sqlite_fetch_array($this->_result, $this->_type);
++
++	}
++
++	function vacuum() {
++
++		$this->query("VACUUM");
++
++	}
++
+ }
+ 
+     // }}}

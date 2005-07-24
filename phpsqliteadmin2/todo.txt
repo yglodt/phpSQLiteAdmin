@@ -1,0 +1,45 @@
+- you can add an alias database w/out the alias filled, which is bad...
+
+- you can remove phpsla.sqlite alias, which is bad as well
+
+- "browse" should have navigation buttons
+
+- display of indexes fails sometimes
+
+- display of table structure fails when columns are typeless (problem in the class)
+
+- ui to create triggers
+
+- ui to create views
+
+- create a way to alter tables
+
+- you name it! still many many stuff to do...
+
+- add a warning if magic_quotes_gpc is ON
+
+- finish "hoster-mode", which must play nicely with login
+
+- make it xhtml 1.0 Transitional:
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+- add multi-language support
+
+- add ui to manager user accounts
+
+
+
+
+THERE IS A BUG:
+
+when you change the path to the file in an alias, the cookie gets not updated, and you still point to the
+old database file!!!
+Changing to another alias and coming back helps.
+
+
+Notes about Steves branch:
+------------------------------------------------------------------------------------------------
+
+dbaction.php: this should go away:
+$object = $_GET['object'];
+$action = $_GET['action'];

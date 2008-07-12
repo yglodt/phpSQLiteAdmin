@@ -1,12 +1,20 @@
 phpSQLiteAdmin changelog ( see http://phpsqliteadmin.sourceforge.net/ for more details)
 
-0.3 (xx.xx.2005)
+0.3 (xx.xx.2008)
 
-- added login
-- fixed session problem concerning database names
-- added field names on browse
-- converted from html 4.01 to xhtml 1.0 transitional
-- fixed the alias configurator to return always to the mainframe window and not the "_top" window
+- Added really basic multiquery support with the query page. This allows one to copy&paste a sql file and execute it in one go. (chale)
+- The query page now displays "x rows affected/returned". Before there was not sort of confirmation when doing non SELECT queries. (chale)
+- Fixed query page's inconsistency in that it was not using htmlspecialchars. (chale)
+- Added initial implimentation of a table exporter. (chale)
+- Added initial support for row adding/editing/deleting. The table must have a primary key in order to edit/delete. (chale)
+- Added some icons. phpsla.css has been edited so that images have no border by default. (chale)
+- Fixed magic quotes issue with query page. (chale)
+- Removed (commented out) function at in includes file around line 192 as it caused an error. (chale)
+- Added login
+- Fixed session problem concerning database names
+- Added field names on browse
+- Converted from html 4.01 to xhtml 1.0 transitional
+- Fixed the alias configurator to return always to the mainframe window and not the "_top" window
 
 0.2 (05.03.2004)
 

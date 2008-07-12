@@ -59,24 +59,27 @@ echo<<<EOT
 <div id="currentdb">Database: {$_SESSION['phpSQLiteAdmin_currentdb']}</div>
 <p class="sqliteversion">SQLite version: $sqliteversion</p>
 <br />
-<a href="mainframe.php" target="mainframe">Back</a> |
-<a href="table_structure.php?object=$current_table" target="mainframe">Structure</a> |
-<a href="table_browse.php?object=$current_table" target="mainframe">Browse</a> |
-<a href="query.php?object=$current_table" target="mainframe">Query</a> |
-<!--<a href="export.php?object=$current_table" target="mainframe">Export</a> |-->
-<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
-<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
+<a href="mainframe.php" target="mainframe"><img src="images/database.png" alt="" /> Database Info</a> |
+<a href="table_structure.php?object=$current_table" target="mainframe"><img src="images/table_structure.png" alt="" /> Structure</a> |
+<a href="table_browse.php?object=$current_table" target="mainframe"><img src="images/table_browse.png" alt="" /> Browse</a> |
+<a href="query.php?object=$current_table" target="mainframe"><img src="images/query.png" alt="" /> Query</a> |
+<a href="row_edit.php?object=$current_table" target="mainframe"><img src="images/row_insert.png" alt=\"\" /> Insert</a> |
+<a href="export.php?object=$current_table" target="mainframe"><img src="images/export.png" alt=\"\" /> Export</a> |
+<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();"><img src="images/table_empty.png" alt=\"\" /> Empty</a> |
+<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();"><img src="images/table_drop.png" alt=\"\" /> Drop</a>
 EOT;
 }
 
 
 function print_table_action_links($current_table) {
 echo<<<EOT
-<a href="table_structure.php?object=$current_table" target="mainframe">Structure</a> |
-<a href="table_browse.php?object=$current_table" target="mainframe">Browse</a> |
-<a href="query.php?object=$current_table" target="mainframe">Query</a> |
-<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();">Empty</a> |
-<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();">Drop</a>
+<a href="table_structure.php?object=$current_table" target="mainframe"><img src="images/table_structure.png" alt="" /> Structure</a> |
+<a href="table_browse.php?object=$current_table" target="mainframe"><img src="images/table_browse.png" alt="" /> Browse</a> |
+<a href="query.php?object=$current_table" target="mainframe"><img src="images/query.png" alt="" /> Query</a> |
+<a href="row_edit.php?object=$current_table" target="mainframe"><img src="images/row_insert.png" alt=\"\" /> Insert</a> |
+<a href="export.php?object=$current_table" target="mainframe"><img src="images/export.png" alt=\"\" /> Export</a> |
+<a href="dbaction.php?action=empty_table&amp;object=$current_table" target="_top" onclick="return confirm_empty_table();"><img src="images/table_empty.png" alt="" /> Empty</a> |
+<a href="dbaction.php?action=drop_table&amp;object=$current_table" target="_top" onclick="return confirm_drop_table();"><img src="images/table_drop.png" alt="" /> Drop</a>
 
 EOT;
 }
@@ -189,8 +192,10 @@ class dbalias {
 	function insert($user,$alias) {
 	}
 
+	/* Strange bug. remove temporarily.
 	function update($this) {
 	}
+	*/
 }
 
 

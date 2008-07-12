@@ -1,3 +1,24 @@
+Revised Todo (July, 10, 2008):
+
+ - Don't allow the removal of the phpsla.sqlite alias.
+ 
+ - Error checking for adding database aliases. How should general error handling work?
+
+ - Add row adding/editing/deleting. (I have a basic implimentation. -chale)
+ 
+ - When displaying the phpsqliteadmin version, it should display the number within the configuration table of the phpsla.sqlite database.
+
+ - (?) Reorganization of the main page: Main area should display phpsqliteadmin version, sqlite version, list all of the databases, have a database creation form/alias configuration links.
+ 
+ - Newer layout... use something like $pg['content'] .= "content" to update content rather than using print. That way we only need one layout file, and a layout inclusion at the end of every page. The sidebar should have that phpsqliteadmin logo as well.
+
+ - Better icons!
+
+ - Feel free to add more. I was unsure of a few of entries in the old todo's.
+
+ - Privilege checks for databases?
+ 
+Old Todo:
 - you can add an alias database w/out the alias filled, which is bad...
 
 - you can remove phpsla.sqlite alias, which is bad as well

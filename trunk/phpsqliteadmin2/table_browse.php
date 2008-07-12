@@ -25,12 +25,20 @@ print_top_links($_GET['object']);
 print "<h3>Table '".$_GET['object']."'</h3>\n";
 print "<table>\n";
 
+// Get table columns.
+$userdbh->_setTableInfo($_GET['object']);
+$cols = $userdbh->getColsType();
+
 $userdbh->query('select * from '.$_GET['object']);
 
-print "<tr>\n";
+print "<tr>\n<th></th>\n<th></th>\n";
 
 for ($i=0; $i<$userdbh->numFields(); $i++) {
     print "<th>" . $userdbh->fieldName($i)  . "</th>\n";
+   	if (strpos(strtolower($cols[$userdbh->fieldName($i)]), "primary")) {
+		$primary_key = $userdbh->fieldName($i); // The field name of the primary key.
+		$primary_key_order = $i; // The "order" of the primary key (to be used to fetch the field's value for a given row).
+	}
 }
 
 print "</tr>\n";
@@ -40,6 +48,8 @@ while($row = $userdbh->fetchArray()) {
 	//$rows = $userdbh->returnRows('num');
 	//$table->print_header();
 	print "<tr>\n";
+	print "<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "\"><img src=\"images/edit.png\" alt=\"Edit\" title=\"Edit\" /></a></td>
+<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "&type=delete\" onclick=\"return confirm_delete_row();\"><img src=\"images/delete.png\" alt=\"Delete\" title=\"Delete\" /></a></td>\n";
 	for ($i=0; $i<$nr_fields; $i++) {
 		if (strlen($row[$i]) > 50) {
 			print '<td>'.substr(htmlentities($row[$i],ENT_QUOTES,$encoding),0,50)."...</td>\n";

@@ -1,11 +1,14 @@
-body,td,th,p,a,li,select,input {
+body,td,th,p,a,li,select,input,textarea {
 	font-family:Verdana,Arial,sans-serif;
 	font-size:11px;
 }
 
+img {
+	border : 0;
+}
 
 body.left {
-	background-color:#effeff;
+	background-color:#eef1f4;
 }
 
 
@@ -18,10 +21,9 @@ form {
 	margin:1px;
 }
 
-
 h1,h2,h3,h4,h5,h6 {
 	font-family:Verdana,Arial,sans-serif;
-	text-decoration:underline;
+	text-decoration:none;
 }
 
 

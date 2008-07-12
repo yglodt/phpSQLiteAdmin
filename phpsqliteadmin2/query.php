@@ -24,36 +24,60 @@ if ($_GET['object'] != '') $current_table = $_GET['object'];
 print_top_links($current_table);
 
 if ($_POST['sql'] != '') {
-        $show = trim($_POST['sql']);
+	if (get_magic_quotes_gpc()) {
+		$_POST['sql'] = stripslashes($_POST['sql']);
+	}
+	$show = trim($_POST['sql']);
 } else {
-        $show = "select * from $current_table";
+	$show = "select * from $current_table";
 }
+
+print "<h3>SQL Query</h3>\n";
 
 ?>
 
-<form name="query" method="post" action="<?=$_SERVER['PHP_SELF']?>">
-<input type="hidden" name="object" value="<?=$current_table?>" />
+<form name="query" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+<input type="hidden" name="object" value="<?php echo $current_table; ?>" />
 <textarea name="sql" rows="8" cols="80">
-<?=$show?>
+<?php echo $show; ?>
 </textarea><br />
+<input type="checkbox" name="multiquery" value="1"> Execute multiple queries (for non SELECT queries).<br />
 <input type="submit" name="submit" value="Execute SQL" />
 </form>
-
 
 <?php
 
 if ($_POST['sql'] != '') {
 	print "<br /><table>\n";
-	//sqlite_escape_string($_POST['sql']);
-	$userdbh->query(trim($_POST['sql']));
+	if (get_magic_quotes_gpc()) {
+		$_POST['sql'] = stripslashes($_POST['sql']);
+	}
+	//$_POST['sql'] = sqlite_escape_string($_POST['sql']);
+	// Note: The query will return funky errors if a row by a certain id exists, or a table already exists, and so on...
+	if ($_POST['multiquery'] == "1") {
+		// (Procedural sqlite_exec function called because I'm too lazy to edit the sqlite class.)
+		$result = sqlite_exec($userdbh->_conn, trim($_POST['sql']));
+		$rows_affected = sqlite_changes($userdbh->_conn);
+		if ($rows_affected != 0) {
+			print $rows_affected. " rows affected.";
+		}
+	} else {
+		$userdbh->query(trim($_POST['sql']));
+		$rows_affected = $userdbh->affectedRows();
+		if ($rows_affected != 0) {
+			print $rows_affected. " rows affected.";
+		} else {
+			print $userdbh->numRows(). " rows returned.";
+		}
+	}
 	while($row = $userdbh->fetchArray()) {
 		$nr_fields = count($row);
 		print "<tr>\n";
 		for ($i=0; $i<$nr_fields; $i++) {
 			if (strlen($row[$i]) > 50) {
-				print '<td>'.substr($row[$i],0,50)."...</td>\n";
+				print '<td>'.substr(htmlentities($row[$i],ENT_QUOTES,$encoding),0,50)."...</td>\n";
 			} else {
-				print "<td>$row[$i]</td>\n";
+				print "<td>".htmlentities($row[$i],ENT_QUOTES,$encoding)."</td>\n";
 			}
 		}
 		print "</tr>\n";

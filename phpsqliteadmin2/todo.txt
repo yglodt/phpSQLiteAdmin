@@ -18,8 +18,6 @@ Revised Todo (July, 10, 2008):
 
  - Privilege checks for databases?
 
- - test
- 
 Old Todo:
 - you can add an alias database w/out the alias filled, which is bad...
 

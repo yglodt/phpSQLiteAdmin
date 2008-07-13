@@ -48,8 +48,8 @@ while($row = $userdbh->fetchArray()) {
 	//$rows = $userdbh->returnRows('num');
 	//$table->print_header();
 	print "<tr>\n";
-	print "<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "\"><img src=\"images/edit.png\" alt=\"Edit\" title=\"Edit\" /></a></td>
-<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "&type=delete\" onclick=\"return confirm_delete_row();\"><img src=\"images/delete.png\" alt=\"Delete\" title=\"Delete\" /></a></td>\n";
+	print "<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "\"><img src=\"include.php?imgid=edit.png\" alt=\"Edit\" title=\"Edit\" /></a></td>
+<td><a href=\"row_edit.php?object=" .$_GET['object']. "&primary_key=" .$primary_key. "&row=" .$row[$primary_key_order]. "&type=delete\" onclick=\"return confirm_delete_row();\"><img src=\"include.php?imgid=delete.png\" alt=\"Delete\" title=\"Delete\" /></a></td>\n";
 	for ($i=0; $i<$nr_fields; $i++) {
 		if (strlen($row[$i]) > 50) {
 			print '<td>'.substr(htmlentities($row[$i],ENT_QUOTES,$encoding),0,50)."...</td>\n";

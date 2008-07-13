@@ -153,13 +153,14 @@ if ($type == "edit") {
 		print "</tr>\n";
 	}
 }
-print "</table>\n";
+print "<tr>\n<th></th>\n<th></th>\n<th>";
 print "<input type=\"hidden\" name=\"row\" value=\"" .$_GET['row']. "\" />\n";
 print "<input type=\"hidden\" name=\"primary_key\" value=\"" .$_GET['primary_key']. "\" />\n";
 print "<input type=\"hidden\" name=\"object\" value=\"" .$_GET['object']. "\" />\n";
 print "<input type=\"hidden\" name=\"type\" value=\"" .$type. "\" />\n";
 print "<input type=\"submit\" name=\"\" value=\"Save\" />\n";
 print "<input type=button value=\"Cancel\" onclick=\"history.back();\">";
+print "</th>\n</table>\n";
 print "</form>";
 
 /*

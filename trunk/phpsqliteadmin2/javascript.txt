@@ -17,6 +17,14 @@ function confirm_empty_table() {
 	}
 }
 
+function confirm_delete_row() {
+	Check = confirm("Delete this row ?");
+	if (Check == true) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 function confirm_drop_index() {
 	Check = confirm("Drop this index ?");

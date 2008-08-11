@@ -15,6 +15,14 @@ $alias->description = $_POST['description'];
 
 if (isset($_POST['insert'])) {
 	// create the new db is case it does not exist
+	if ($alias->alias = "") {
+		print "An alias name needs to be provided.";
+		exit();
+	}
+	if ($alias->path = "") {
+		print "The path to the database needs to be provided.";
+		exit();
+	}
 	if (!file_exists($alias->path)) $newdb =& new SPSQLite($alias->path);
 	$sysdbh->query("insert into databases (user,alias,path,description) values ({$alias->user},'{$alias->alias}','{$alias->path}','{$alias->description}')");
 	// do we really want this?
@@ -45,8 +53,12 @@ if (isset($_POST['update'])) {
 
 
 if (isset($_POST['delete'])) {
-	$sysdbh->query("delete from databases where user = {$alias->user} and alias = '{$alias->alias}'");
-	//unlink($alias->path); nooooooo don't do that...
+	if ($alias->alias = "phpsla.sqlite") {
+		print "The configuration table phpsla.sqlite cannot be removed.";
+		exit();
+	}
+	$sysdbh->query("delete from databases where user = '{$alias->user}' and alias = '{$alias->alias}'");
+	//unlink($alias->path); nooooooo don't do that... No, that wouldn't be good.
 	$_SESSION['phpSQLiteAdmin_currentdb'] = '';
 	header("Location: dbconfig.php");
 	exit;
@@ -85,7 +97,7 @@ if (isset($_GET['alias'])) {
 echo<<<EOT
 <br /><br /><br /><br /><br />
 <form name="delete" action="editdb.php" method="post" onsubmit="">
-<input type="hidden" name="use"r value="{$current_user}" />
+<input type="hidden" name="user" value="{$current_user}" />
 <input type="hidden" name="alias" value="{$_GET[alias]}" />
 <input type="submit" name="delete" value="Remove this alias" />
 </form>

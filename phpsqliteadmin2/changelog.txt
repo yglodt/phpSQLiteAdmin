@@ -2,6 +2,8 @@ phpSQLiteAdmin changelog ( see http://phpsqliteadmin.sourceforge.net/ for more d
 
 0.3 (xx.xx.2008)
 
+- An error will be returned if the alias name or path is not specified. (chale)
+- An error will be returned when trying to delete the phpsla.sqlite alias. (chale)
 - Icons have been (temporarily?) embedded into the includes file. (chale)
 - Added really basic multiquery support with the query page. This allows one to copy&paste a sql file and execute it in one go. (chale)
 - The query page now displays "x rows affected/returned". Before there was not sort of confirmation when doing non SELECT queries. (chale)

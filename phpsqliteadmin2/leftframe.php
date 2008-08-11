@@ -38,7 +38,7 @@ if (check_db()) {
         print "<li class=\"list_title\" title=\"Tables in database $current_db\">Tables</li>\n";
 	$userdbh->query("select name,upper(name) from SQLITE_MASTER where type = 'table' order by 2");
 	while($row = $userdbh->fetchArray()) {
-		print "<li><a href=\"table_browse.php?object=".$row[0]."\"><img src=\"include.php?imgid=table_browse.png\" alt=\"Browse table\" title=\"Browse table\" /></a> <a href=\"table_structure.php?object=".$row[0]."\">$row[0]</a></li>\n";
+		print "<li><a href=\"table_browse.php?object=".$row[0]."\"><img src=\"images/table_browse.png\" alt=\"Browse\" title=\"Browse table\" /></a> <a href=\"table_structure.php?object=".$row[0]."\">$row[0]</a></li>\n";
 	}
 	print "</ul>\n</div>\n";
 }

@@ -15,11 +15,11 @@ $alias->description = $_POST['description'];
 
 if (isset($_POST['insert'])) {
 	// create the new db is case it does not exist
-	if ($alias->alias = "") {
+	if ($alias->alias == "") {
 		print "An alias name needs to be provided.";
 		exit();
 	}
-	if ($alias->path = "") {
+	if ($alias->path == "") {
 		print "The path to the database needs to be provided.";
 		exit();
 	}
@@ -53,7 +53,7 @@ if (isset($_POST['update'])) {
 
 
 if (isset($_POST['delete'])) {
-	if ($alias->alias = "phpsla.sqlite") {
+	if ($alias->alias == "phpsla.sqlite") {
 		print "The configuration table phpsla.sqlite cannot be removed.";
 		exit();
 	}

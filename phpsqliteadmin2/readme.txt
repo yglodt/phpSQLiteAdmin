@@ -1,6 +1,10 @@
 phpSQLiteAdmin is being developed under the GNU GPL license.
 See the file copying.txt for license details.
 
+How to use:
+phpSQLiteAdmin makes use of a simple user system. The default information is listed below:
+Default username: root
+Default password: root
 
 phpSQLiteAdmin makes use of the "Simple Power SQLite class",
 see http://www.php-power.it/SPSQLiteClass.php

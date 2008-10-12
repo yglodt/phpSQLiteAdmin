@@ -1,6 +1,6 @@
 phpSQLiteAdmin changelog ( see http://phpsqliteadmin.sourceforge.net/ for more details)
 
-0.3 (xx.xx.2008)
+0.3-alpha1 (17.09.2008)
 
 - Icons have been added (no longer embedded). (chale)
 - An error will be returned if the alias name or path is not specified. (chale)

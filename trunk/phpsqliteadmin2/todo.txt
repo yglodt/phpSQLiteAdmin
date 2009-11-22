@@ -16,6 +16,11 @@ Revised Todo (July 25, 2008):
 
  - Privilege checks for databases?
  
+COMPLETED BY WARDDR (November 22, 2009):
+
+ - Fix "Table needs a primary key identifier." error, and try to find a way that the id isn't needed
+ - Row adding: make autoincrement possible
+ 
 Old Todo:
 
 - "browse" should have navigation buttons

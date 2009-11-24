@@ -5,7 +5,7 @@ require_once('include.php');
 // Query (form submitted) portion
 if ($_POST['type'] == "edit") {
 
-	if (!$_GET['primary_key']) {
+	if (!isset($_POST['primary_key']) || ($_POST['primary_key'] == "")) {
 		print "Table needs a primary key identifier.";
 		exit();
 	}
@@ -37,8 +37,10 @@ if ($_POST['type'] == "edit") {
 	foreach (array_keys($_POST) as $column) {
 		// Only do columns, not $_POST['type'] and so on...
 		if (strstr($column, "column__") !== false) {
-			$columns .= str_replace("column__", "", $column). ", ";
-			$values .= "'" .$_POST[$column]. "', ";
+			if (!isset($_POST["null_".str_replace("column__", "", $column)])){
+				$columns .= str_replace("column__", "", $column). ", ";
+				$values .= "'" .$_POST[$column]. "', ";
+			}
 		}
 		//echo $column. "<br>";
 
@@ -83,7 +85,7 @@ if ($_GET['type'] == "delete") {
 print_top_links($_GET['object']);
 
 // Show main content: add or edit a row form.
-if (!$_GET['row']) {
+if (!isset($_GET['row'])) {
 	$type = "add";
 } else {
 	$type = "edit";
@@ -94,6 +96,10 @@ if (!$_GET['object']) {
 }
 
 if ($type == "edit") {
+	if (!isset($_GET['primary_key']) || ($_GET['primary_key'] == "")) {
+		print "<h3>Table needs a primary key identifier.</h3>";
+		exit();
+	}
 	print "<h3>Edit Row from Table '{$_GET['object']}'</h3>\n";
 } else {
 	print "<h3>Add Row to Table '{$_GET['object']}'</h3>\n";
@@ -101,7 +107,6 @@ if ($type == "edit") {
 
 print "<form action=\"row_edit.php\" method=\"post\">";
 print "<table border=\"1\">\n";
-print "<tr><th>Column</th><th>Type</th><th>Value</th></tr>\n";
 $userdbh->_setTableInfo($_GET['object']);
 $cols = $userdbh->getColsType();
 $k = 0;
@@ -114,6 +119,7 @@ while (list($key,$value) = each($cols)) {
 	//if (strpos(strtolower(" " .$col_value[$k]. " "), "text")) { $col_value[$k] = "text"; }
 	$col_value[$k] = str_replace("not null", "", $col_value[$k]);
 	$col_value[$k] = str_replace("null", "", $col_value[$k]);
+	$col_value[$k] = str_replace("unique", "", $col_value[$k]);
 	$col_value[$k] = str_replace("primary key", "", $col_value[$k]);
 	$col_value[$k] = str_replace("default", "", $col_value[$k]);
 	$col_value[$k] = preg_replace("/\'[^>]*\'/iU", "", $col_value[$k]);
@@ -123,6 +129,7 @@ while (list($key,$value) = each($cols)) {
 }
 
 if ($type == "edit") {
+	print "<tr><th>Column</th><th>Type</th><th>Value</th></tr>\n";
 	$userdbh->query("select * from ".$_GET['object']. " where " .$_GET['primary_key']. " = '" .$_GET['row']. "'");
 	//$userdbh->query('select * from '.$_GET['object']);
 	while($row = $userdbh->fetchArray()) {
@@ -140,6 +147,7 @@ if ($type == "edit") {
 		}
 	}
 } else {
+	print "<tr><th>Column</th><th>Type</th><th>Value</th><th>null?</th></tr>\n";
 	$nr_fields = count($col_name);
 	for ($i=0; $i<$nr_fields; $i++) {
 		print "<tr>\n";
@@ -150,6 +158,7 @@ if ($type == "edit") {
 		} else {
 			print "<td><input type=\"text\" name=\"column__" .$col_name[$i]. "\" value=\"\" /></td>\n";
 		}
+		print "<td><input type=\"checkbox\" name=\"null__" .$col_name[$i]. "\" value=\"\" onclick=\"column__".$col_name[$i].".disabled = this.checked ? true : false\" /></td>\n";
 		print "</tr>\n";
 	}
 }
@@ -160,6 +169,7 @@ print "<input type=\"hidden\" name=\"object\" value=\"" .$_GET['object']. "\" />
 print "<input type=\"hidden\" name=\"type\" value=\"" .$type. "\" />\n";
 print "<input type=\"submit\" name=\"\" value=\"Save\" />\n";
 print "<input type=button value=\"Cancel\" onclick=\"history.back();\">";
+if ($type == "add") (print "</th>\n<th>\n");
 print "</th>\n</table>\n";
 print "</form>";
 

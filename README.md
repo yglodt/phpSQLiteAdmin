@@ -43,4 +43,4 @@ See the file copying.txt for license details.
 - `SPSQLite.class.diff`		diff -u between both
 
 There is another project around that uses the same name. It had it's first
-appearance in february 2004 while we made our first release in august 2003. Bastard.
+appearance in february 2004 while we made our first release in august 2003.
